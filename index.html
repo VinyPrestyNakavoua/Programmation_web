@@ -1,0 +1,36 @@
+<!-- cf /examples/basic -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="importmap">
+    {
+        "imports": {
+            "LISS": "/LISS.js"
+        }
+    }
+    </script>
+    <script type="module" src="/LISS.js" autodir="/components/"></script>
+
+  </head>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>age</th>
+          <th>profession</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr is="user-line" user-id ="1"></tr>
+        <tr is="user-line" user-id ="2"></tr>
+        <tr is="user-line" user-id ="3"></tr>
+        <tr is="user-line" user-id ="4"></tr>
+        <tr is="user-line" user-id ="5"></tr>
+      </tbody>
+
+    </table>
+
+  </body>
+</html>
