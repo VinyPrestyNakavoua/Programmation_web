@@ -5,20 +5,32 @@ console.warn(Object.keys(d))
 const rows = document.body.querySelectorAll("tr[is='user-line']");
 
 // affichage de donnees
-for (let row of rows) {
+async function affichage() {
 
-    const i = row.getAttribute("user-id");
+    
 
-    const response = await fetch(`http://localhost:8080/user/${i}`);
-    const res =  await response.json();
+    for (let row of rows) {
 
-    // queerselector a l'interieur ou dehors???
+        const i = row.getAttribute("user-id");
+    
+        const response = await fetch(`http://localhost:8080/user/${i}`);
+        let res =  await response.text();
 
-    //row.setAttribute("user-id", id_server);
-    row.setAttribute("user-name", res.nom);
-    row.setAttribute("user-age", res.age);
-    row.setAttribute("user-profession", res.profession);
+        console.warn(res);
+
+        res = JSON.parse(res)
+    
+        // queerselector a l'interieur ou dehors???
+    
+        //row.setAttribute("user-id", id_server);
+        row.setAttribute("user-name", res.nom);
+        row.setAttribute("user-age", res.age);
+        row.setAttribute("user-profession", res.profession);
+    }
+    
 }
+
+await affichage()
 
 const html = LISS.require("./index.html");
 
@@ -39,6 +51,7 @@ export default class UserLine extends LISS({
             console.log("click");
             //... requete fetch pour supprimer l'utilisateur
             const res = await fetch(`http://localhost:8080/user/${ID}`, {method : 'DELETE'});
+             affichage()
             console.log(res.ok, res.status, res.statusText);
         })
 
